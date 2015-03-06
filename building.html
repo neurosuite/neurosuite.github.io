@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN
+		"http://www.w3.org/TR/html4/loose.dtd"">
+<html>
+
+<!-- Mirrored from neurosuite.sourceforge.net/building.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:40 GMT -->
+<head>
+  <title>Klusters, Neuroscope and NDManager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#F5F5F5" link="#64819E" alink="#64819E" vlink="#64819E">
+
+
+<!-- ******************************************** Header ******************************************** -->
+
+<div class="box">
+<div class="header"></div>
+<div class="screenshots"></div>
+
+<!-- ******************************************** Building ******************************************** -->
+
+<h1>Building from Sources</h1>
+
+Building from sources is only required if a package is not available for your GNU/Linux distribution.
+
+<h2 id="recent">Contributing Packages</h2>
+
+<!--While we are well aware that building and installing from source is not as easy as installing a binary package, unfortunately we do not have the time and resources to create packages for every single GNU/Linux distribution. But you could help: creating a package does not actually require much more work than building and installing from sources. If you are willing to take the extra steps and contribute a package, read <a href="packaging.html">these instructions</a>.-->
+Creating an installable package does not actually require much extra work compared to building and installing from source. If you are willing to take the extra steps and contribute a package to help us and other users, please read <a href="packaging.html">these instructions</a>.
+
+<!-- ******************************************** Building/Recent ******************************************** -->
+
+<h2 id="recent">Recent GNU/Linux Distributions</h2>
+
+Follow the instructions in this section if your distribution is recent enough to include cmake&nbsp;>=&nbsp;2.8.6 and Qt4&nbsp;>=&nbsp;4.8.0. Otherwise read the instructions for <a href="#older">Older GNU/Linux Distributions</a>.
+
+<!-- Environment -->
+<h3>Setting up the Environment</h3>
+Install g++, cmake and Qt4 (headers and libraries) using your preferred package manager. For instance, on Debian-based distributions type:
+
+<div class="code">
+<pre>
+# sudo apt-get install g++ cmake libqt4-dev
+</pre>
+</div>
+
+<!-- Building and Installing -->
+<h3>Building and Installing the Libraries and Applications</h3>
+
+Always make sure you start by building and installing LibKlustersShared. This shared library is required by Klusters, Neuroscope and NDManager.
+<br><br>
+All source packages (including LibKlustersShared) are built and installed in the same manner:
+<div class="code">
+<pre>
+(extract the archive and cd inside)
+# mkdir build
+# cd build
+# cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+(become root)
+# make install
+</pre>
+</div>
+
+Depending on your distribution, you may need to adapt the 'cmake' command above:
+<div class="code">
+<pre>
+# cmake -DCMAKE_INSTALL_PREFIX=/usr -DLIB_SUFFIX=64 ..
+</pre>
+</div>
+
+<!-- ******************************************** Build/Older ******************************************** -->
+
+<h2 id="older">Older GNU/Linux Distributions</h2>
+
+Follow the instructions below if your distribution is too old to include cmake&nbsp;>=&nbsp;2.8.6 or Qt4&nbsp;>=&nbsp;4.8.0. Otherwise read the instructions for <a href="#recent">Recent GNU/Linux Distributions</a>.
+
+<!-- Environment -->
+<h3>Setting up the Environment</h3>
+Install g++ using your preferred package manager. For instance, on Debian-based distributions type:
+
+<div class="code">
+<pre>
+# sudo apt-get install g++
+</pre>
+</div>
+
+Download the latest versions of <a href="http://www.cmake.org/cmake/resources/software.html">cmake</a> and <a href="http://download.qt-project.org/official_releases/qt/4.8/4.8.4/qt-everywhere-opensource-src-4.8.4.tar.gz">qt4</a>, and build them. 
+
+<div class="code">
+<pre>
+# tar xvzf qt-everywhere-opensource-src-4.8.4.tar.gz
+# ./configure
+(become root)
+# make install
+</pre>
+
+<pre>
+# tar xvzf cmake-2.8.11.1.tar.gz
+# cd cmake-2.8.11.1
+# ./configure
+(become root)
+# make install
+</pre>
+</div>
+
+<!-- Building and Installing -->
+<h3>Building and Installing the Libraries and Applications</h3>
+
+Always make sure you start by building and installing LibKlustersShared. This shared library is required by Klusters, Neuroscope and NDManager.
+<br><br>
+All source packages (including LibKlustersShared) are built and installed in the same manner:
+<div class="code">
+<pre>
+(extract the archive and cd inside)
+# mkdir build
+# cd build
+# export PATH=/usr/local/Trolltech/Qt-4.8.4/bin:/usr/local/bin:$PATH
+# cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+(become root)
+# make install
+</pre>
+</div>
+
+Depending on your distribution, you may need to adapt the 'cmake' command above:
+<div class="code">
+<pre>
+# cmake -DQT_QMAKE_EXECUTABLE=/usr/local/Trolltech/Qt-4.8.4/bin/qmake -DCMAKE_INSTALL_PREFIX=/usr -DLIB_SUFFIX=64 ..
+</pre>
+</div>
+
+
+</div>
+</body>
+
+<!-- Mirrored from neurosuite.sourceforge.net/building.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:40 GMT -->
+</html>

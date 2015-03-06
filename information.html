@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN
+		"http://www.w3.org/TR/html4/loose.dtd"">
+<html>
+
+<!-- Mirrored from neurosuite.sourceforge.net/information.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:15 GMT -->
+<head>
+  <title>Klusters, Neuroscope and NDManager</title>
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+   h1 { font-weight: normal; font-size: 20px; }
+   h2 { font-weight: normal; font-size: 16px; }
+   h3 { font-weight: normal; font-size: 14px; }
+ </style>
+</head>
+<body bgcolor="#F5F5F5">
+
+
+<!-- ******************************************** Header ******************************************** -->
+
+<div class="box">
+<div class="header">&nbsp;</div>
+
+<!-- ******************************************** Building ******************************************** -->
+
+<div class="sbox">
+<sh1><a href="#general">General</a></sh1>
+<sh2><a href="#distribution">How are Klusters, Neuroscope and NDManager distributed?</a></sh2>
+<sh2><a href="#users">Who uses Klusters, Neuroscope and NDManager?</a></sh2>
+<sh1><a href="#start">Getting Started</a></sh1>
+<sh2><a href="#manuals">Are there user manuals for Klusters, Neuroscope and NDManager?</a></sh2>
+<sh2><a href="#test">Where can I find data to test Klusters, Neuroscope and NDManager?</a></sh2>
+<sh2><a href="#plugins">What are the NDManager Plugins?</a></sh2>
+<sh1><a href="#formats">File Formats</a></sh1>
+<sh2><a href="#native">What file formats do Klusters, Neuroscope and NDManager use?</a></sh2>
+<sh2><a href="#convert">What if my data is in different formats?</a></sh2>
+<sh1><a href="#contributing">Contributing</a></sh1>
+<sh2><a href="#code">How can I help add features or correct bugs?</a></sh2>
+<sh2><a href="#packages">There are no binary packages for my GNU/Linux distributions &ndash;&nbsp;how can I help?</a></sh2>
+</div>
+
+
+
+<br><br>
+<h1 id="general">General</h1>
+
+<h2 id="distribution">How are Klusters, Neuroscope and NDManager distributed?</h2>
+
+Klusters, Neuroscope and NDManager are free software distributed under the <a href="http://www.gnu.org/licenses/gpl.html">General Public License (GPL)</a>.
+
+<h2 id="users">Who uses Klusters, Neuroscope and NDManager?</h2>
+
+Klusters, Neuroscope and NDManager are used to process neuronal recordings from the hippocampus and cortex by dozens of teams around the world, including those of:
+
+<br><br><div class="country">France</div>
+<ul>
+<li>M.&nbsp;Zugaro and S.&nbsp;Wiener (CNRS&ndash;Coll&egrave;ge de France)</li>
+<li>K.&nbsp;Benchenane (CNRS, ESPCI)</li>
+<li>D.&nbsp;Robbe (INSERM)</li>
+</ul>
+
+<div class="country">Germany</div>
+<ul>
+<li>A.&nbsp;Sirota (Univ. T&uuml;bingen)</li>
+<li>L.&nbsp;Busse (Univ. T&uuml;bingen)</li>
+<li>D.&nbsp;Isbrandt (Univ. Hamburg)</li>
+<li>G.&nbsp;Laurent (MPI Frankfurt)</li>
+</ul>
+
+<div class="country">UK</div>
+<ul>
+<li>V.&nbsp;Crunelli (Univ. Cardiff)</li>
+</ul>
+
+<div class="country">USA</div>
+<ul>
+<li>G.&nbsp;Buzs&aacute;ki (NYU)</li>
+<li>K.&nbsp;Diba (Univ. Wisconsin)</li>
+<li>E.&nbsp;Kandel (Univ. Columbia)</li>
+<li>J.&nbsp;Knierim (Univ. Johns Hopkins)</li>
+</ul>
+
+<div class="country">Japan</div>
+<ul>
+<li>H.&nbsp;Hirase (RIKEN)</li>
+</ul>
+
+and many more... Let us know!
+
+<br><br>
+<h1 id="start">Getting Started</h1>
+
+<h2 id="manuals">Are there user manuals for Klusters, Neuroscope and NDManager?</h2>
+
+Yes, extensive user manuals can be accessed from the Help menu in each application.
+
+<h2 id="test">Where can I find data to test Klusters, Neuroscope and NDManager?</h2>
+
+Klusters can be tested using these <a href="http://neurosuite.sourceforge.net/example-klusters.tar.bz2" name="example-klusters.tar.bz2">example files</a> (25.1MB, courtesy of David Robbe). Neuroscope can be tested using these <a href="http://neurosuite.sourceforge.net/example-neuroscope.tar.bz2" name="example-neuroscope.tar.bz2">example files</a> (16.7MB, courtesy of David Robbe). Both sets of files also contain parameter files for NDManager.
+
+<h2 id="plugins">What are the NDManager Plugins?</h2>
+
+<h3>Standard Plugins</h3>
+
+NDManager Plugins include a number of scripts and programs to automatically pre-process files recorded with data acquisition systems: file conversion (from vendor-specific, proprietary formats to open formats used by Klusters, Neuroscope and NDManager), channel resampling and reordering, high-pass filtering and spike detection, waveform feature extraction (PCA) for subsequent spike sorting, video transcoding and LED tracking, etc.
+
+<h3>Custom Plugins</h3>
+
+You can easily integrate your own processing tools within our framework without code modification. Only a simple 'front-end' shell script is required to read and check the parameters from the XML parameter file (rather than from the command-line or legacy configuration files), and pass them along to the processing tools. This intermediate shell script is usually very simple because we also provide a program (xpathReader) and convenience functions (ndm_functions) to easily parse the XML file. Reading our code should help you get started: look at ndm_start, and e.g. ndm_extractchannels.
+
+<h3>Do the Plugins work on all platforms?</h3>
+
+The NDManager Plugins were developed for GNU/Linux. They consist of a collection of C/C++ programs and bash scripts, so it should be possible to run them on MacOS too. As for Windows, you may want to try using <a href="www.cygwin.html">Cygwin</a>.
+<br><br>
+Besides the obvious ethical considerations, there are also valid technical reasons why you would want to prefer GNU/Linux, if only to keep your precious data base on a robust system, offering solid and trustable server capabilities (rock-stable kernel, journaling file systems, user permissions, secure network tools, automatic backup systems, etc.)
+
+<br><br>
+<h1 id="formats">File Formats</h1>
+
+<h2 id="native">What file formats do Klusters, Neuroscope and NDManager use?</h2>
+
+File formats are described both in the user manuals (accessible from the Help menu), and <a href="formats.html">here</a>.
+
+<h2 id="convert">What if my data is in different formats?</h2>
+
+You will have to convert your data. An advantageous side-effect is that you will still be able to access your data in 10&nbsp;years, because our formats are documented and our programs are free &ndash;&nbsp;meaning you have access to the full source code, as well as the right to change it and redistribute it (provided you grant your users the same rights, see <a href="http://www.gnu.org/licenses/gpl.html">the GPL license</a>).
+
+<br><br>
+
+Amplipex and Intan Technology use the same formats as Klusters, Neuroscope and NDManager. If you use CED/Spike2 or Neuralynx, NDManager provides plugins to convert your data. If you are willing to provide free programs to convert data recorded using additional acquisition systems, we will be happy to include them with the other plugins.
+
+<br><br>
+<h1 id="contributing">Contributing</h1>
+
+<h2 id="code">How can I help add features or correct bugs?</h2>
+
+The source code for stable releases is available <a href="https://sourceforge.net/projects/neurosuite/files/sources">here</a>. To get the latest versions, use the git repository for each specific application. For more information, go to the appropriate page on SourceForge, e.g. <a href="http://sourceforge.net/projects/neuroscope">http://sourceforge.net/projects/neuroscope</a>.
+
+<h2 id="packages">There are no binary packages for my GNU/Linux distributions &ndash;&nbsp;how can I help?</h2>
+
+Creating packages is fairly easy. The main reason why we cannot provide packages for all distributions is that we simply do not have the time and resources. But if you have built the code from source (as explained <a href="building.html">here</a>) and are willing to take the extra few steps to help, please read  <a href="packaging.html">these instructions</a>.
+
+</div>
+</body>
+
+<!-- Mirrored from neurosuite.sourceforge.net/information.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:16 GMT -->
+</html>

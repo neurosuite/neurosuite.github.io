@@ -1,0 +1,328 @@
+/* Links */
+a
+{
+	font-family: sans-serif;
+}
+a:link
+{
+	color: #666699;
+}
+a:visited
+{
+	color: #666699;
+}
+a:hover
+{
+	color: #666699;
+}
+a:active
+{
+	color: #666699;
+}
+
+/* Klusters, Neuroscope and NDManager */
+.header
+{
+	background: url("Images/Title.png") no-repeat center top;
+	height: 130px;
+	width: 1158px;
+}
+
+/* Main screenshot */
+.image
+{
+	background: url("Images/Image.png") no-repeat center top;
+	height: 460px;
+	width: 1100px;
+	margin-left: 28px;
+}
+.screenshots
+{
+	background: url("Images/Screenshots.png") no-repeat center top;
+	height: 150px;
+	width: 1101;
+	margin-left: 28px;
+}
+
+/* Text area */
+.box
+{
+	background: #fdfdfd;
+	width: 1158px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 28px;
+	border: solid #cccccc 1px;
+}
+
+/* Download and Info box */
+.smallbox
+{
+	margin-left: 20px;
+	background: #ffffff;
+	width: 100px;
+	padding: 5px;
+	border: solid #cccccc 1px;
+	text-align: center;
+	float: right;
+	margin-top: 30px;
+}
+
+/* Section titles */
+h1
+{
+	color: #666699;
+	font-weight: normal;
+	font-size: 24px;
+	counter-reset: section;
+}
+h2:before
+{
+	content: counter(section) ". ";
+}
+h2
+{
+	color: #666699;
+	font-weight: normal;
+	font-size: 20px;
+	counter-increment: section;
+	counter-reset: subsection;
+}
+h3:before
+{
+	content: counter(section) "." counter(subsection) ". ";
+}
+h3
+{
+	color: #448844;
+	font-weight: normal;
+	font-size: 18px;
+	counter-increment: subsection;
+}
+.section
+{
+	color: #777777;
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 0.5em;
+}
+
+/* Summary (TOC) */
+.sbox
+{
+	background-color: #fdfddc;
+	margin: 10px;
+	padding: 20px;
+	border: solid #cccccc 1px;
+}
+sh1
+{
+	color: #777777;
+	font-weight: normal;
+	font-size: 12px;
+	display: block;
+	counter-reset: ssection;
+	line-height: 2em;
+}
+sh1 :link
+{
+	text-decoration: none;
+	color: #666699;
+}
+sh2
+{
+	color: #666699;
+	font-weight: normal;
+	font-size: 12px;
+	display: block;
+	counter-increment: ssection;
+	counter-reset: ssubsection;
+	margin-left: 20px;
+}
+sh2:before
+{
+	content: counter(ssection) ". ";
+}
+sh2 :link
+{
+	text-decoration: none;
+	color: #666699;
+}
+
+
+/* Paragraphs */
+body
+{
+	font-size: 12px;
+	text-align: justify;
+	font-family: sans-serif;
+}
+p
+{
+	font-size: 14px;
+	text-align: justify;
+}
+.credits
+{
+	font-size: 14px;
+	text-align: left;
+	color: #777777;
+}
+.code
+{
+	background: #ffffff;
+	margin: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border: solid #cccccc 1px;
+	font-size: 12px;
+	color: black;
+	background-color: #eeeeee;
+}
+.country
+{
+	padding-left: 20px;
+	text-decoration: underline;
+}
+
+/* Character styles */
+.keyword
+{
+	color: #777777;
+	font-weight: normal;
+}
+.emph
+{
+	font-weight: bold;
+}
+.email
+{
+	text-decoration: underline;
+}
+.replace
+{
+	color: #666699;
+}
+.replace_
+{
+	color: #000000;
+	background-color: #9999cc;
+}
+
+/* Citation */
+p.citation
+{
+	background: #fdfddc;
+	padding: 10px;
+	font-size: 14px;
+	text-align: left;
+	border: solid #cccccc 1px;
+}
+p.citation img
+{
+	vertical-align: middle;
+	float: left;
+	height: 60px;
+	margin: 5px;
+	margin-right: 20px;
+}
+.authors
+{
+	font-weight: bold;
+}
+.journal
+{
+	font-style: italic;
+}
+
+/* Download Table */
+table.table
+{
+	text-align: left;
+	border-collapse: collapse;
+	font-size: 12px;
+	text-align: justify;
+}
+.table th
+{
+	padding: 5px 15px;
+	text-align: left;
+	background: #cccccc;
+}
+.table td
+{
+	padding: 5px 15px;
+	text-align: left;
+	background: #eeeeee;
+	border-top: solid 1px #ffffff;
+}
+.table img
+{
+	vertical-align: middle;
+	height: 16px;
+}
+th.ul
+{
+	background: url("Images/ul.png") no-repeat top left #cccccc;
+}
+th.ur
+{
+	background: url("Images/ur.png") no-repeat top right #cccccc;
+}
+td.ll
+{
+	background: url("Images/ll.png") no-repeat bottom left #eeeeee;
+}
+td.lr
+{
+	background: url("Images/lr.png") no-repeat bottom right #eeeeee;
+}
+
+table#sources
+{
+	display:none;
+}
+table#ubuntu
+{
+	display:none;
+}
+table#opensuse
+{
+	display:none;
+}
+table#fedora
+{
+	display:none;
+}
+input#sources:checked ~ table#sources
+{
+	display:block;
+}
+input#sources:checked ~ table#ubuntu table#opensuse table#fedora
+{
+	display:none;
+}
+input#ubuntu:checked ~ table#ubuntu
+{
+	display:block;
+}
+input#ubuntu:checked ~ table#sources table#opensuse table#fedora
+{
+	display:none;
+}
+input#opensuse:checked ~ table#opensuse
+{
+	display:block;
+}
+input#opensuse:checked ~ table#sources table#ubuntu table#fedora
+{
+	display:none;
+}
+input#fedora:checked ~ table#fedora
+{
+	display:block;
+}
+input#fedora:checked ~ table#sources table#opensuse table#ubuntu
+{
+	display:none;
+}

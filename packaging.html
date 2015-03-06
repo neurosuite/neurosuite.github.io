@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN
+		"http://www.w3.org/TR/html4/loose.dtd"">
+<html>
+
+<!-- Mirrored from neurosuite.sourceforge.net/packaging.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:40 GMT -->
+<head>
+  <title>Klusters, Neuroscope and NDManager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#F5F5F5" link="#64819E" alink="#64819E" vlink="#64819E">
+
+
+<!-- ******************************************** Header ******************************************** -->
+
+<div class="box">
+<div class="header">&nbsp;</div>
+
+<!-- ******************************************** Building ******************************************** -->
+
+<h1>Creating a Package</h1>
+
+If you wish to contribute a package for your distribution that we could include on this website for others to use, you only need to copy, paste and adapt a few lines in the file CMakeLists.txt located in the source directory. This is fairly easy, only the items highlighted in violet in the code below must be adapted.
+
+<h2>Building the Sources without Installing</h2>
+
+Start by building the sources without installing: proceed as described <a href="building.html">previously</a> but replace 'make install' with 'make'.
+
+<div class="code">
+<pre>
+	# cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+	# make
+</pre>
+</div>
+
+<h2>Adapting CMakeLists.txt</h2>
+
+If your distribution uses .deb packages, find the following line in CMakeLists.txt:
+
+<div class="code">
+<pre>
+	# >>> TEMPLATE CODE FOR ADDITIONAL DEBIAN-LIKE DISTRIBUTIONS <<<
+</pre>
+</div>
+
+If your distribution uses .rpm packages, find the following line instead:
+
+<div class="code">
+<pre>
+	# >>> TEMPLATE CODE FOR ADDITIONAL REDHAT-LIKE DISTRIBUTIONS <<<
+</pre>
+</div>
+
+The paragraph located just below is the Packaging Code. Duplicate it and uncomment it (remove the '#' signs). For example, here is the Packaging Code for Klusters in Debian-like distributions (for RedHat-like distributions, it is almost identical except the uppercase variable names are different):
+
+<div class="code">
+<pre>
+elseif(DISTRIBUTION STREQUAL "<span class="replace">Ubuntu</span>")
+
+	# Set <span class="replace">Ubuntu</span>-specific information (see http://www.cmake.org/Wiki/CMake:CPackPackageGenerators)
+	if(ARCHITECTURE MATCHES ".*x86_64.*")
+		set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "<span class="replace">amd64</span>")
+	else()
+		set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "<span class="replace">i386</span>")
+	endif()
+	set(CPACK_DEBIAN_PACKAGE_MAINTAINER "<span class="replace">Your Name</span>")
+	set(CPACK_DEBIAN_PACKAGE_SECTION "Science")
+	set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "nphys-data, neuroscope, ndmanager")
+	set(CPACK_DEBIAN_PACKAGE_DEPENDS "libklustersshared, <span class="replace">libqt4-network, libqt4-xml, libqtcore4, libqtgui4, libqtwebkit4</span>")
+	set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://klusters.sourceforge.net")
+	set(CPACK_GENERATOR "DEB")
+	set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/postinst;${CMAKE_CURRENT_SOURCE_DIR}/postrm;" )
+	set(CPACK_PACKAGE_FILE_NAME ${CPACK_PACKAGE_NAME}<span class="replace_">_</span>${CPACK_PACKAGE_VERSION}<span class="replace_">-</span>${RELEASE}<span class="replace_">_</span>${CPACK_DEBIAN_PACKAGE_ARCHITECTURE})
+</pre>
+</div>
+
+The values highlighted in violet are for Ubuntu and must be adapted to your distribution, as described in the following sections.
+
+<h3>Distribution Name</h3>
+
+To determine the official name of your distribution, type:
+
+<div class="code">
+<pre>
+	# lsb_release -si
+</pre>
+</div>
+
+Replace 'Ubuntu' with the output of this command in the Packaging Code (two instances).
+
+<h3>Computer Architecture</h3>
+
+The acronyms 'amd64' and 'i386' indicate whether the package is for a 64&nbsp;bit or a 32&nbsp;bit system, respectively. Each distribution uses slightly different acronyms, such as 'x86_64' for 64&nbsp;bits, or 'i586' or 'i686' for 32&nbsp;bits. Replace these values with the appropriate ones &ndash;&nbsp;this information can easily be found by searching for packages for your distribution on the internet: the acronyms appear as suffixes in the package names.
+
+<h3>Your Name</h3>
+
+This one should be fairly easy (if you cannot remember, just check your ID or passport).
+
+<h3>Package Dependencies</h3>
+
+There is a script in the source directory to help you determine the appropriate values. From within the source directory, type:
+
+<div class="code">
+<pre>
+	# ./depends
+</pre>
+</div>
+
+This will print a long comma-separated list. Find and copy the items related to Qt &ndash;&nbsp;those are typically named 'libqt...' or 'qt...' Edit CMakeLists.txt as appropriate, but make sure you <span class="emph">do not remove libklustersshared</span> from the list!
+
+<h3>Package Name</h3>
+
+The last line in the Packaging Code is used to generate the package file name: it simply appends the package name, the package version and release, and the computer architecture. Different distributions use different separators between these elements, such as '_', '-' and '.' Again, this information can easily be found by searching for packages for your distribution on the internet and examining their file name. For instance, the core Qt libraries are provided in a package named 'libqt4-core_4.8.1-0ubuntu4.4_amd64.deb' in Ubuntu, and 'libqt4-4.8.5-322.1.x86_64.rpm' in openSUSE. These names use different separators:
+
+<div class="code">
+<pre>
+libqt4-core<span class="replace_">_</span>4.8.1<span class="replace_">-</span>0ubuntu4.4<span class="replace_">_</span>amd64.deb
+libqt4<span class="replace_">-</span>4.8.5<span class="replace_">-</span>322.1<span class="replace_">.</span>x86_64.deb
+</pre>
+</div>
+
+Adapt the last line in the Packaging Code as needed.
+
+<h2>Generating the Package</h2>
+
+The package can now be generated:
+
+<div class="code">
+<pre>
+	# cpack
+</pre>
+</div>
+
+If you create packages for LibKlustersshared, Klusters, Neuroscope and/or NDManager, please contact me at <span class="email">michael.zugaro at college-de-france.fr</span> so we can upload them to this website.
+
+</div>
+</body>
+
+<!-- Mirrored from neurosuite.sourceforge.net/packaging.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Mar 2015 12:02:40 GMT -->
+</html>
